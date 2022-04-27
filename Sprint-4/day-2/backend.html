@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../accessing keys/common.css" />
+    <style>
+      #navbar {
+        margin-bottom: 50px;
+        padding: 20px;
+        display: flex;
+        margin-bottom: 20px;
+        background-color: grey;
+        color: aliceblue;
+        justify-content: space-around;
+      }
+     
+    </style>
+  </head>
+  <body>
+    <div id="navbar">
+      <div><a href="backend.html">Backend</a></div>
+      <div> <a href="frontend.html">Frontend</a></div> </div>
+    </div>
+    <form id="investorForm">
+      <input id="imgURL" type="text" placeholder="Enter Image URL" />
+      <input id="name" type="text" placeholder="Enter investor name" />
+      <input id="role" type="text" placeholder="Enter investor role" />
+      <input id="companyLogo" type="text" placeholder="Enter company logo URL" />
+      <input type="submit" />
+    </form>
+  </body>
+</html>
+
+<script>
+  //imgurl,name,role,companyLogo
+  document.querySelector("#investorForm").addEventListener("submit", investorsFun);
+//   var investorArr = JSON.parse(localStorage.getItem("investorsData"))|| []
+
+  if(JSON.parse(localStorage.getItem("investorsData"))==null){
+    investorArr =[]
+  }
+  else{
+    investorArr=JSON.parse(localStorage.getItem("investorsData"))
+  }
+  //     Array of objects
+  var investorsData=[{imgURL:"https://masai-website-images.s3.ap-south-1.amazonaws.com/Vijay_Shekhar_Sharma_Paytm_96f52579b8.jpg", name:"Vijay Shekhar Sharma",role:"Founder & CEO",companylogo:"https://masai-website-images.s3.ap-south-1.amazonaws.com/paytm_rect_06df45a24f.svg"},
+    {imgURL:"https://masai-website-images.s3.ap-south-1.amazonaws.com/Rectangle_427_637d69bb57.png", name:"Kunal Shah",role:"Founder",companylogo:"https://masai-website-images.s3.ap-south-1.amazonaws.com/cred_0a47d7b4f8.png"},
+    {imgURL:"https://masai-website-images.s3.ap-south-1.amazonaws.com/amrish_rau_pine_labs_144e5e587c.jpg", name:"Amrish Rau",role:"CEO",companylogo:"https://masai-website-images.s3.ap-south-1.amazonaws.com/pine_labs_0aa2407434.png"},
+    {imgURL:"https://masai-website-images.s3.ap-south-1.amazonaws.com/Sampad_swain_Instamojo_f12bf6341e.jpg", name:"Sampad Swain",role:"Co-Founder & CEO",companylogo:"https://masai-website-images.s3.ap-south-1.amazonaws.com/instamojo_8763e704f7.png"}]
+  function investorsFun() {
+    event.preventDefault();
+
+    // idOfForm.idOfinput.value
+    var investorObj = {
+      investorImg: investorForm.imgURL.value,
+      investorName: investorForm.name.value,
+      investorRole: investorForm.role.value,
+      investorCompanyLogo: investorForm.companyLogo.value,
+    };
+    investorArr.push(investorObj);
+    localStorage.setItem("investorsData",JSON.stringify(investorArr))
+  }
+
+</script>
